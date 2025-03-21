@@ -17,10 +17,9 @@ int main() {
 
     vector<vector<string>> result;
     for (auto &it : mp) {
-        result.emplace_back(it.second); // Use it.second (vector<string>)
+        result.emplace_back(it.second); 
     }
 
-    // Output result to verify
     for (auto &group : result) {
         for (auto &word : group) {
             cout << word << " ";

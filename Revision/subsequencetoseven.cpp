@@ -16,12 +16,14 @@ int main(){
     }
     int maxl= 0;
     unordered_map<int,int> mp;
+    mp[0] = -1;
     for(int i=0;i<n;i++){
-        if(mp.find(vec[i]%7)!=mp.end()){
+        if(mp.find(prefix[i]%7)!=mp.end()){
             int l = mp[vec[i]%7];
             maxl = max(maxl,i-l);
+        }else{
+            mp[prefix[i] % 7] = i
         }
-        mp[vec[i]] = i;
     }
     cout<<maxl;
     return 0;

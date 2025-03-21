@@ -64,13 +64,9 @@ int main(){
 
 
     int maxl=0;
-    // finding maximum
     for(int i=0;i<n-1;i++){
-        // hoof
         maxl = max(maxl,prefix[i][0]+suffix[i+1][0]);
-        // paper
         maxl = max(maxl,prefix[i][1]+suffix[i+1][1]);
-        //scissor
         maxl  =  max(maxl,prefix[i][2]+suffix[i+1][2]);
     }
 
@@ -78,4 +74,3 @@ int main(){
 
     return 0;
 }
-

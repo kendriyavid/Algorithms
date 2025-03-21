@@ -14,8 +14,10 @@ int main(){
     int j=0;
     long long maxe = INT_MIN;
     long long mine = INT_MAX;
+    multiset<long long> mst;
     for(int i=0;i<n;i++){
-        maxe = max(maxe,vec[i]);
+        mst.insert(vec[i]);
+        maxe = mst.;
         mine = min(mine,vec[i]);
         cout<<maxe<<" "<<mine<<" "<<i<<" "<<j<<endl;
         // check the condition

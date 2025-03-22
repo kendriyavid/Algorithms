@@ -1,29 +1,53 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main(){
-    int n, m;
-    cin >> n >> m;
-    vector<int> cities(n);
-    vector<int> towers(m);
+struct Point {
+    long long x, y, t;
+};
 
-    for(int i = 0; i < n; i++) cin >> cities[i];
-    for(int i = 0; i < m; i++) cin >> towers[i];
+// Custom comparator for sorting cows by time
+bool compareByTime(const Point &a, const Point &b) {
+    return a.t < b.t;
+}
 
-    int result = INT_MIN;
-    int j = 0;
+// Function to check if a cow can reach grazing
+bool canReach(const Point &cow, const Point &graze) {
+    return abs(cow.x - graze.x) + abs(cow.y - graze.y) <= abs(cow.t - graze.t);
+}
 
-    for(int i = 0; i < n; i++){
-        int cdiff = abs(cities[i] - towers[j]);
+int main() {
+    int G, N;
+    cin >> G >> N;
+    
+    vector<Point> grazes(G), cows(N);
+    
+    // Read grazing incidents
+    for (int i = 0; i < G; i++) 
+        cin >> grazes[i].x >> grazes[i].y >> grazes[i].t;
 
-        while(j < m - 1 && cdiff > abs(cities[i] - towers[j + 1])){
-            j++;
-            cdiff = abs(cities[i] - towers[j]);
-        }
+    // Read cow alibis
+    for (int i = 0; i < N; i++) 
+        cin >> cows[i].x >> cows[i].y >> cows[i].t;
+    
+    // Sort cows based on time
+    sort(cows.begin(), cows.end(), compareByTime);
 
-        result = max(result, cdiff);
+    unordered_set<int> innocentCows;
+
+    // Process each grazing incident
+    for (auto graze : grazes) {
+        auto it = lower_bound(cows.begin(), cows.end(), graze, compareByTime);
+        
+        // Check if `it` is a valid cow and can reach
+        if (it != cows.end() && canReach(*it, graze)) 
+            innocentCows.insert(it - cows.begin());
+        
+        // // Check the previous cow (edge case)
+        // if (it != cows.begin() && canReach(*(it - 1), graze)) 
+        //     innocentCows.insert((it - 1) - cows.begin());
     }
 
-    cout << result << endl;
+    // Output the number of innocent cows
+    cout << innocentCows.size() << endl;
     return 0;
 }

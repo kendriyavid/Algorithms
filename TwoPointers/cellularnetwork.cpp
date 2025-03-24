@@ -41,10 +41,6 @@ int main() {
         // Check if `it` is a valid cow and can reach
         if (it != cows.end() && canReach(*it, graze)) 
             innocentCows.insert(it - cows.begin());
-        
-        // // Check the previous cow (edge case)
-        // if (it != cows.begin() && canReach(*(it - 1), graze)) 
-        //     innocentCows.insert((it - 1) - cows.begin());
     }
 
     // Output the number of innocent cows

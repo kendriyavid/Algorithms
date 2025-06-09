@@ -8,7 +8,7 @@ int main(){
     mp[1] = 1;
     mp[2] = 2;
     mp[3] = 3;
-    for(auto &it: mp){
+    for(auto *it: mp){
         cout<<it.first<<" "<<it.second<<endl;
     }
 

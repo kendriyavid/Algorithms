@@ -22,7 +22,6 @@ int main(){
 
     for(char x:s){
         char lower = lowercase(x);
-        cout<<lower<<endl;
         if(vowels.find(lower)==vowels.end()){
             result = result+'.'+lower;
         }

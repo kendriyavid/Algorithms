@@ -15,7 +15,7 @@ int main(){
         string s;
         cin >> s;
 
-        int position = n;  // Assume no duplicate
+        int position = n;  
         unordered_set<char> seti;
         int s1 = 0;
         for (int i = 0; i < n; i++) {
@@ -27,10 +27,8 @@ int main(){
             seti.insert(s[i]);
         }
 
-        // If no repetition, s1 is seti.size()
         if (position == n) s1 = seti.size();
 
-        // calculating score
         cout << s1 + scoreFinder(s.substr(position)) << endl;
     }
     return 0;

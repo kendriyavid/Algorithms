@@ -17,7 +17,6 @@ int main() {
             if(c[i]!=s[i]){
                 count++;
             }
-            cout<<s[n-i-1]<<endl;
             if((count+1)/2<=k && s[n-i-1]<c[i]){
                     flag = true;
                     break;

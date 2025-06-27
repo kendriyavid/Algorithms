@@ -3,30 +3,40 @@ using namespace std;
 
 int main(){
     int t;
-    cin >> t;
+    cin>>t;
     while(t--){
         int n;
-        cin >> n;
+        cin>>n;
+        int low =1;
+        int high = n;
+        int i=0;
+        int j=n-1;
         vector<int> result(n);
-        int low = 1, high = n;
-        int i = 0, j = n - 1;
         bool flag = true;
+        while(low<=high && i<=j){
+            
+            if(flag){
+                result[i] = low;
+                low++;
+                if(i<=j){
+                    result[j] = low;
+                    low++;flag=!flag;i++;j--;
+                }
 
-        while (i <= j) {
-            if (flag) {
-                result[i++] = low++;
-                if (i <= j) result[j--] = low++;
-            } else {
-                result[i++] = high--;
-                if (i <= j) result[j--] = high--;
+            }else{  
+                result[i] = high;
+                high--;
+                if(i<=j){
+                    result[j] = high;
+                    high--;flag=!flag;i++;j--;
+                }
             }
-            flag = !flag;
         }
 
-        for (int x : result) {
-            cout << x << " ";
+        for(int x: result){
+            cout<<x<<" ";
         }
-        cout << endl;
+        cout<<endl;
     }
     return 0;
 }
